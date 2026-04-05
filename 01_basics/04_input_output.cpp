@@ -149,22 +149,24 @@ int main() {
     // =========================================================================
 
     std::cout << "\n=== INPUT ===" << std::endl;
+    std::cout << "NOTE: This section asks for keyboard input." << std::endl;
+    std::cout << "      Follow each prompt and press Enter." << std::endl;
 
     // --- Reading a single value ---
     int user_age;
-    std::cout << "Enter your age: ";
+    std::cout << "\nEnter your age (type a number, e.g. 25, then press Enter): ";
     std::cin >> user_age;
     std::cout << "You entered: " << user_age << std::endl;
 
     // --- Reading multiple values ---
     int x, y;
-    std::cout << "Enter two integers (e.g. 5 10): ";
+    std::cout << "\nEnter two integers separated by space (e.g. 5 10), then Enter: ";
     std::cin >> x >> y;
     std::cout << "x=" << x << " y=" << y << " sum=" << (x+y) << std::endl;
 
     // --- Reading a word (stops at whitespace) ---
     std::string word;
-    std::cout << "Enter one word: ";
+    std::cout << "\nEnter one word (no spaces), then Enter: ";
     std::cin >> word;
     std::cout << "Word: " << word << std::endl;
 
@@ -175,7 +177,7 @@ int main() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::string full_line;
-    std::cout << "Enter a full sentence: ";
+    std::cout << "\nEnter a full sentence (spaces allowed), then Enter: ";
     std::getline(std::cin, full_line);
     std::cout << "You said: " << full_line << std::endl;
 
@@ -184,6 +186,7 @@ int main() {
     // =========================================================================
 
     std::cout << "\n=== INPUT VALIDATION ===" << std::endl;
+    std::cout << "Enter a positive integer (try typing 'abc' first to see error handling): " << std::endl;
 
     int valid_num;
     while (true) {

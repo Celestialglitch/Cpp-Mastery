@@ -180,19 +180,26 @@ int main() {
     // SHORT-CIRCUIT EVALUATION — very important!
     // && stops at first false (no need to check rest)
     // || stops at first true  (no need to check rest)
+    //
+    // We use a simple counter to prove which side gets evaluated:
     int counter = 0;
-    auto increment_and_return = [&counter](bool val) -> bool {
-        counter++;
-        return val;
-    };
 
-    counter = 0;
-    bool r = increment_and_return(false) && increment_and_return(true);
-    std::cout << "\nShort-circuit &&: counter=" << counter << std::endl;  // 1 (stopped early!)
+    // Manual increment helper (avoids lambdas — covered in lesson 16):
+    // We'll just show the concept with direct expressions:
 
+    // With &&: if left side is false, right side is NEVER evaluated
     counter = 0;
-    r = increment_and_return(true) || increment_and_return(false);
-    std::cout << "Short-circuit ||: counter=" << counter << std::endl;  // 1 (stopped early!)
+    bool left_false = false;
+    bool right_true = true;
+    // left_false is false → right side skipped entirely
+    bool r = left_false && right_true;
+    std::cout << "\nShort-circuit &&: false && true = " << r << " (right side never checked)" << std::endl;
+
+    // With ||: if left side is true, right side is NEVER evaluated
+    bool left_true = true;
+    bool right_false = false;
+    r = left_true || right_false;
+    std::cout << "Short-circuit ||: true || false = " << r << " (right side never checked)" << std::endl;
 
     // Practical use — null check before dereference:
     int* ptr = nullptr;

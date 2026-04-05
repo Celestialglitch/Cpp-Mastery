@@ -117,18 +117,18 @@ int main() {
     std::unordered_map<std::string, int> word_count;
 
     std::string text = "the quick brown fox jumps over the lazy dog the fox";
-    std::string word;
+    std::string current_word;  // renamed to avoid shadowing outer 'word' variable
     for (char c : text) {
         if (c == ' ') {
-            if (!word.empty()) {
-                word_count[word]++;  // creates with 0 if not exists, then increments
-                word = "";
+            if (!current_word.empty()) {
+                word_count[current_word]++;
+                current_word = "";
             }
         } else {
-            word += c;
+            current_word += c;
         }
     }
-    if (!word.empty()) word_count[word]++;
+    if (!current_word.empty()) word_count[current_word]++;
 
     std::cout << "Word frequencies:" << std::endl;
     for (const auto& [w, count] : word_count) {

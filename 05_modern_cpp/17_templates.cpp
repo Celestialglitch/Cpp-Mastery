@@ -40,8 +40,9 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
-#include <type_traits>  // for type traits
-#include <concepts>     // C++20 concepts (if supported)
+#include <type_traits>  // for type traits (C++11)
+// NOTE: <concepts> is C++20. If your compiler only supports C++17, comment this out.
+// #include <concepts>
 
 // =========================================================================
 // SECTION 1: FUNCTION TEMPLATES

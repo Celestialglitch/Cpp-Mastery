@@ -60,7 +60,7 @@ int main() {
     // Basic int — most common integer type
     int age = 25;
     int temperature = -10;    // negative values work fine
-    int zero = 0;
+    // int zero = 0;  // valid but unused in this demo
 
     std::cout << "=== INTEGER TYPES ===" << std::endl;
     std::cout << "age         = " << age         << std::endl;
@@ -68,9 +68,11 @@ int main() {
 
     // short — smaller range, saves memory in large arrays
     short small_num = 32767;   // max value for short
-    short overflow  = 32767 + 1;  // OVERFLOW! wraps around to -32768
-    std::cout << "short max   = " << small_num << std::endl;
-    std::cout << "short overflow = " << overflow << std::endl;  // -32768 (wraps!)
+    // OVERFLOW demo: 32767 + 1 exceeds short's max, wraps to -32768
+    // We cast explicitly so the compiler knows we intend this:
+    short overflow  = static_cast<short>(32767 + 1);
+    std::cout << "short max      = " << small_num << std::endl;
+    std::cout << "short overflow = " << overflow  << std::endl;  // -32768 (wraps!)
 
     // long long — for very large numbers
     long long population = 8000000000LL;  // 8 billion (LL suffix = long long literal)
@@ -211,7 +213,7 @@ int main() {
     std::cout << "MAX_STUDENTS = " << MAX_STUDENTS << std::endl;
 
     // constexpr — evaluated at COMPILE TIME (even faster)
-    constexpr int ARRAY_SIZE = 100;
+    // constexpr int ARRAY_SIZE = 100;  // useful when declaring arrays: int arr[ARRAY_SIZE];
     constexpr double GRAVITY = 9.81;
     std::cout << "GRAVITY = " << GRAVITY << std::endl;
 
@@ -233,7 +235,10 @@ int main() {
 
     std::cout << "auto x = " << x << " (int)"    << std::endl;
     std::cout << "auto y = " << y << " (double)"  << std::endl;
+    std::cout << "auto z = " << z << " (float)"   << std::endl;
     std::cout << "auto c = " << c << " (char)"    << std::endl;
+    std::cout << "auto s = " << s << " (string)"  << std::endl;
+    std::cout << "auto b = " << b << " (bool)"    << std::endl;
 
     // =========================================================================
     // SECTION 8: TYPE CONVERSION
@@ -242,8 +247,8 @@ int main() {
     std::cout << "\n=== TYPE CONVERSION ===" << std::endl;
 
     // IMPLICIT conversion (automatic, may lose data):
-    int   i = 3.99;    // double → int: truncates to 3 (NOT rounded!)
-    float f2 = 100000000000.0;  // too big for float precision
+    int   i = static_cast<int>(3.99);  // double → int: truncates to 3 (NOT rounded!)
+    // float f2 = 100000000000.0;  // too big for float precision — just a note
     std::cout << "double 3.99 → int: " << i << std::endl;  // 3
 
     // EXPLICIT cast (you tell compiler to convert):

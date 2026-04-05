@@ -189,7 +189,8 @@ void demo_mutex() {
 // =========================================================================
 
 std::atomic<int> atomic_counter{0};
-std::atomic<bool> stop_flag{false};
+// stop_flag would be used in a real server loop to signal threads to stop.
+// Example: std::atomic<bool> stop_flag{false};
 
 void demo_atomic() {
     std::cout << "\n=== ATOMIC ===" << std::endl;

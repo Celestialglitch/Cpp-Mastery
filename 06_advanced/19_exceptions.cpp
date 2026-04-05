@@ -311,11 +311,9 @@ int main() {
     // Check if function is noexcept:
     std::cout << "safe_add is noexcept: " << noexcept(safe_add(1, 2)) << std::endl;
 
-    // noexcept(false) — may throw (default):
-    auto may_throw = [](int x) -> int {
-        if (x < 0) throw std::invalid_argument("negative");
-        return x;
-    };
+    // A function WITHOUT noexcept may throw — the default for all functions:
+    // auto may_throw = [](int x) -> int { ... };
+    // We don't mark it noexcept because it CAN throw.
 
     // =========================================================================
     // SECTION 7: EXCEPTION IN CONSTRUCTORS

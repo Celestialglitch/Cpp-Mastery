@@ -52,12 +52,15 @@ int main() {
     // Partial initialization — rest filled with 0:
     int partial[5] = {1, 2};  // {1, 2, 0, 0, 0}
 
-    // Zero-initialize all:
-    int zeros[5] = {};  // {0, 0, 0, 0, 0}
-    int zeros2[5] = {0};
+    // Zero-initialize all (two equivalent ways):
+    int zeros[5]  = {};   // {0, 0, 0, 0, 0}
+    int zeros2[5] = {0};  // same result
 
-    // Size deduced from initializer:
+    // Size deduced from initializer (compiler counts the elements):
     int auto_size[] = {10, 20, 30, 40, 50};  // compiler knows size = 5
+
+    // Suppress unused-variable warnings for demo variables:
+    (void)partial; (void)zeros; (void)zeros2; (void)auto_size;
 
     // Access by index (0-based):
     std::cout << "scores[0] = " << scores[0] << std::endl;  // 90
@@ -175,7 +178,10 @@ int main() {
 
     std::cout << "Transposed:" << std::endl;
     for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) std::cout.width(3), std::cout << trans[i][j];
+        for (int j = 0; j < 3; j++) {
+            std::cout.width(3);
+            std::cout << trans[i][j];
+        }
         std::cout << std::endl;
     }
 
